@@ -3,10 +3,10 @@ import numpy as np
 import os
 from filters import PencilSketch
 
-m = 240
-n = 320
-DIR_PATH = 'ZuBuD'
-SKETCH_PATH = 'ZuBuD_Sketch'
+m = 480
+n = 640
+DIR_PATH = '../../ZuBuD+/training'
+SKETCH_PATH = '../../ZuBuD_Sketch/train'
 
 for file in os.listdir(DIR_PATH):
     file_path = os.path.join(DIR_PATH, file)
@@ -17,6 +17,6 @@ for file in os.listdir(DIR_PATH):
 	    img = np.resize(img, (m, n, 3))
     pencil = PencilSketch(width, height)
     sketch = pencil.render(img)
+    os.makedirs(SKETCH_PATH, exist_ok=True)
     write_path = os.path.join(SKETCH_PATH, file)
     cv.imwrite(write_path, sketch)
-    
